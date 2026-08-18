@@ -1,0 +1,7 @@
+.pio/
+node_modules/
+platforms/
+hooks/
+.research/
+work/
+.DS_Store
