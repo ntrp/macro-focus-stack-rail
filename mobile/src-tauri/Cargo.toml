@@ -1,0 +1,17 @@
+[package]
+name = "focus-rail"
+version = "0.2.0"
+description = "Mobile controller for the Focus Rail"
+authors = ["Focus Rail"]
+edition = "2021"
+
+[lib]
+name = "focus_rail_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-blec = "0.12"

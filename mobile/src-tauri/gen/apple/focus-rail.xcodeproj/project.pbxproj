@@ -1,0 +1,460 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0902DAE87605238E1A937CD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2F2DECC202E4FBB9952B82 /* UIKit.framework */; };
+		10970CF4888C3DD6643A2C25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A4D4FC46F92C195C6A9D491 /* LaunchScreen.storyboard */; };
+		1102F69D7A247C8D02057D6B /* libapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A42CEBB3149AEDBF87C0AC /* libapp.a */; };
+		13CBD5DAE8054A0CFC8F2DEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB402DDDB14CC8CA5095D7F7 /* Assets.xcassets */; };
+		32E78FF0CB4D92733B50B35C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1487F4EC8DE1A2A35AA70E1F /* WebKit.framework */; };
+		37969A088363C0A1D1AD89EA /* assets in Resources */ = {isa = PBXBuildFile; fileRef = A6DAEBB06ED14EADDB1A8F34 /* assets */; };
+		3BA47EC43F41FD1961BA05C8 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B6EDDD1B6498DABECF2981 /* Metal.framework */; };
+		57B68E88CEAE07EB65068A5C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3842BC53D65934C30F64CED6 /* QuartzCore.framework */; };
+		8DC57C4F509A94F925E6696D /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2102E97608EE52937ADAE64D /* MetalKit.framework */; };
+		C19D267CB40183603FC6FA7D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A8FF13D83BFBA0E7867E13 /* CoreGraphics.framework */; };
+		CDEAACA72A6654C667C1C1C0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0BCBDA087CF757C606215B6D /* main.mm */; };
+		EDC6C2880A245B1BFF7C5C34 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9679A53AAF3868C042C94FB8 /* CoreBluetooth.framework */; };
+		F3F32AB9876D73E41567C666 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F94F2D338C32451C4425E63 /* Security.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		02D2B6476CDBE0CEE1C686D1 /* bindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
+		0BCBDA087CF757C606215B6D /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		1487F4EC8DE1A2A35AA70E1F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		1E6B09F6FD843B5A43B6896F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2102E97608EE52937ADAE64D /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		37B6EDDD1B6498DABECF2981 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		3842BC53D65934C30F64CED6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4218AB42EEAA7B8B50508960 /* lib.rs */ = {isa = PBXFileReference; path = lib.rs; sourceTree = "<group>"; };
+		53A8FF13D83BFBA0E7867E13 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6A4D4FC46F92C195C6A9D491 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		75A42CEBB3149AEDBF87C0AC /* libapp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libapp.a; sourceTree = "<group>"; };
+		8F94F2D338C32451C4425E63 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9679A53AAF3868C042C94FB8 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		99E170B4D23852DEB2F8A144 /* focus-rail_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "focus-rail_iOS.entitlements"; sourceTree = "<group>"; };
+		A118A1A534D8F49F3385A898 /* main.rs */ = {isa = PBXFileReference; path = main.rs; sourceTree = "<group>"; };
+		A6DAEBB06ED14EADDB1A8F34 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
+		C40BEC18AD0FADC073D8BFDE /* focus-rail_iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "focus-rail_iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB402DDDB14CC8CA5095D7F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC2F2DECC202E4FBB9952B82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		60FE8F129181DD2EA136F086 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1102F69D7A247C8D02057D6B /* libapp.a in Frameworks */,
+				C19D267CB40183603FC6FA7D /* CoreGraphics.framework in Frameworks */,
+				3BA47EC43F41FD1961BA05C8 /* Metal.framework in Frameworks */,
+				8DC57C4F509A94F925E6696D /* MetalKit.framework in Frameworks */,
+				57B68E88CEAE07EB65068A5C /* QuartzCore.framework in Frameworks */,
+				F3F32AB9876D73E41567C666 /* Security.framework in Frameworks */,
+				0902DAE87605238E1A937CD1 /* UIKit.framework in Frameworks */,
+				EDC6C2880A245B1BFF7C5C34 /* CoreBluetooth.framework in Frameworks */,
+				32E78FF0CB4D92733B50B35C /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2ABDEEEE42D8118A159BAC19 /* focus-rail_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				99E170B4D23852DEB2F8A144 /* focus-rail_iOS.entitlements */,
+				1E6B09F6FD843B5A43B6896F /* Info.plist */,
+			);
+			path = "focus-rail_iOS";
+			sourceTree = "<group>";
+		};
+		2EE13BC34A5623EC7F4884CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9679A53AAF3868C042C94FB8 /* CoreBluetooth.framework */,
+				53A8FF13D83BFBA0E7867E13 /* CoreGraphics.framework */,
+				75A42CEBB3149AEDBF87C0AC /* libapp.a */,
+				37B6EDDD1B6498DABECF2981 /* Metal.framework */,
+				2102E97608EE52937ADAE64D /* MetalKit.framework */,
+				3842BC53D65934C30F64CED6 /* QuartzCore.framework */,
+				8F94F2D338C32451C4425E63 /* Security.framework */,
+				CC2F2DECC202E4FBB9952B82 /* UIKit.framework */,
+				1487F4EC8DE1A2A35AA70E1F /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B015A108997AEE6D878E4B9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4218AB42EEAA7B8B50508960 /* lib.rs */,
+				A118A1A534D8F49F3385A898 /* main.rs */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+		522A5C372136B496B4C846E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C40BEC18AD0FADC073D8BFDE /* focus-rail_iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6C7D2EC3A983E41BDBFC825A /* focus-rail */ = {
+			isa = PBXGroup;
+			children = (
+				0BCBDA087CF757C606215B6D /* main.mm */,
+				CACECF17CEE94CD67D4BC09D /* bindings */,
+			);
+			path = "focus-rail";
+			sourceTree = "<group>";
+		};
+		869AB74892BAA1A749FA8599 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				6C7D2EC3A983E41BDBFC825A /* focus-rail */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		937B35714A92413A2BD43BE6 = {
+			isa = PBXGroup;
+			children = (
+				A6DAEBB06ED14EADDB1A8F34 /* assets */,
+				CB402DDDB14CC8CA5095D7F7 /* Assets.xcassets */,
+				6A4D4FC46F92C195C6A9D491 /* LaunchScreen.storyboard */,
+				FA8EC31D9DDF9B04C2C78C71 /* Externals */,
+				2ABDEEEE42D8118A159BAC19 /* focus-rail_iOS */,
+				869AB74892BAA1A749FA8599 /* Sources */,
+				4B015A108997AEE6D878E4B9 /* src */,
+				2EE13BC34A5623EC7F4884CB /* Frameworks */,
+				522A5C372136B496B4C846E0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CACECF17CEE94CD67D4BC09D /* bindings */ = {
+			isa = PBXGroup;
+			children = (
+				02D2B6476CDBE0CEE1C686D1 /* bindings.h */,
+			);
+			path = bindings;
+			sourceTree = "<group>";
+		};
+		FA8EC31D9DDF9B04C2C78C71 /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Externals;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		908EA12B9C204B7C1166CDC2 /* focus-rail_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 544073A34061FB948154A9F2 /* Build configuration list for PBXNativeTarget "focus-rail_iOS" */;
+			buildPhases = (
+				BB523BAD45FD31D3BAC02037 /* Build Rust Code */,
+				F990B8319B8C65E868B813BA /* Sources */,
+				B97FDA8E7D33DC5218A575AB /* Resources */,
+				60FE8F129181DD2EA136F086 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "focus-rail_iOS";
+			productName = "focus-rail_iOS";
+			productReference = C40BEC18AD0FADC073D8BFDE /* focus-rail_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9D72580FBC493AE35CDEBC68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 05A5AF8EB98284ABA15CDADD /* Build configuration list for PBXProject "focus-rail" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 937B35714A92413A2BD43BE6;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				908EA12B9C204B7C1166CDC2 /* focus-rail_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B97FDA8E7D33DC5218A575AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13CBD5DAE8054A0CFC8F2DEA /* Assets.xcassets in Resources */,
+				10970CF4888C3DD6643A2C25 /* LaunchScreen.storyboard in Resources */,
+				37969A088363C0A1D1AD89EA /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BB523BAD45FD31D3BAC02037 /* Build Rust Code */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Rust Code";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Externals/x86_64/${CONFIGURATION}/libapp.a",
+				"$(SRCROOT)/Externals/arm64/${CONFIGURATION}/libapp.a",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "npm run -- tauri ios xcode-script -v --platform ${PLATFORM_DISPLAY_NAME:?} --sdk-root ${SDKROOT:?} --framework-search-paths \"${FRAMEWORK_SEARCH_PATHS:?}\" --header-search-paths \"${HEADER_SEARCH_PATHS:?}\" --gcc-preprocessor-definitions \"${GCC_PREPROCESSOR_DEFINITIONS:-}\" --configuration ${CONFIGURATION:?} ${FORCE_COLOR} ${ARCHS:?}";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F990B8319B8C65E868B813BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDEAACA72A6654C667C1C1C0 /* main.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		08D4C955C48A0D10CC6A91CE /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = debug;
+		};
+		3C9501B1F5B15801FA0E8605 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = (
+					arm64,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "focus-rail_iOS/focus-rail_iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				INFOPLIST_FILE = "focus-rail_iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = "$(inherited) $(PROJECT_DIR)/Externals/arm64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME) $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(inherited) $(PROJECT_DIR)/Externals/x86_64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME) $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.focusrail.mobile;
+				PRODUCT_NAME = "Focus Rail";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
+			};
+			name = debug;
+		};
+		9F3E7F718271773CFD9F769B /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = release;
+		};
+		F7941F11985DBE686A14E53B /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = (
+					arm64,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "focus-rail_iOS/focus-rail_iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				INFOPLIST_FILE = "focus-rail_iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = "$(inherited) $(PROJECT_DIR)/Externals/arm64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME) $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(inherited) $(PROJECT_DIR)/Externals/x86_64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME) $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.focusrail.mobile;
+				PRODUCT_NAME = "Focus Rail";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
+			};
+			name = release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05A5AF8EB98284ABA15CDADD /* Build configuration list for PBXProject "focus-rail" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08D4C955C48A0D10CC6A91CE /* debug */,
+				9F3E7F718271773CFD9F769B /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = debug;
+		};
+		544073A34061FB948154A9F2 /* Build configuration list for PBXNativeTarget "focus-rail_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C9501B1F5B15801FA0E8605 /* debug */,
+				F7941F11985DBE686A14E53B /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9D72580FBC493AE35CDEBC68 /* Project object */;
+}

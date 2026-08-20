@@ -79,8 +79,18 @@ void setup() {
 
   service->start();
   BLEAdvertising* advertising = server->getAdvertising();
-  advertising->addServiceUUID(BLE_SERVICE_UUID);
-  advertising->setScanResponse(true);
+  advertising->setMinInterval(BLE_ADVERTISING_INTERVAL_UNITS);
+  advertising->setMaxInterval(BLE_ADVERTISING_INTERVAL_UNITS);
+
+  BLEAdvertisementData advertisement;
+  advertisement.setFlags(ESP_BLE_ADV_FLAG_GEN_DISC |
+                         ESP_BLE_ADV_FLAG_BREDR_NOT_SPT);
+  advertisement.setCompleteServices(BLEUUID(BLE_SERVICE_UUID));
+  advertising->setAdvertisementData(advertisement);
+
+  BLEAdvertisementData scanResponse;
+  scanResponse.setName(BLE_DEVICE_NAME);
+  advertising->setScanResponseData(scanResponse);
   advertising->start();
   Serial.println("BLE advertising as FocusRail");
 }
@@ -88,6 +98,14 @@ void setup() {
 bool receiveCommand(String& command) {
   CommandMessage message{};
   if (xQueueReceive(commandQueue, &message, 0) != pdTRUE) return false;
+  command = message.text;
+  return true;
+}
+
+bool waitForCommand(String& command) {
+  CommandMessage message{};
+  if (xQueueReceive(commandQueue, &message, portMAX_DELAY) != pdTRUE)
+    return false;
   command = message.text;
   return true;
 }

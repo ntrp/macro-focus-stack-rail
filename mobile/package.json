@@ -1,21 +1,22 @@
 {
   "name": "focus-rail-mobile",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "android": "ns run android",
-    "ios": "ns run ios",
-    "clean": "ns clean"
+    "dev": "vite",
+    "build": "vite build",
+    "test": "node --test",
+    "tauri": "tauri",
+    "android": "tauri android dev",
+    "ios": "tauri ios dev"
   },
   "dependencies": {
-    "@nativescript-community/ble": "3.1.22",
-    "@nativescript/core": "9.0.20"
+    "@mnlphlp/plugin-blec": "^0.12.0",
+    "@tauri-apps/api": "^2.11.1"
   },
   "devDependencies": {
-    "@nativescript/android": "9.0.5",
-    "@nativescript/ios": "9.0.3",
-    "@nativescript/types": "9.0.0",
-    "@nativescript/webpack": "5.0.38",
-    "typescript": "5.8.3"
+    "@tauri-apps/cli": "^2.11.4",
+    "vite": "^8.2.2"
   }
 }

@@ -13,6 +13,7 @@ void zeroPosition();
 void reject(const char* error);
 
 String statusJson();
+bool isActive();
 bool statusDirty();
 void markStatusPublished();
 void markStatusDirty();

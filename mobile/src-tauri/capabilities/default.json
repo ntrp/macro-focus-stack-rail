@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Focus Rail main window permissions",
+  "windows": ["main"],
+  "permissions": ["core:default", "blec:default"]
+}

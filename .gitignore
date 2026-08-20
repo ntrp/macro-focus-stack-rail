@@ -1,7 +1,10 @@
 .pio/
+/firmware/sdkconfig.*
+!/firmware/sdkconfig.defaults
 node_modules/
-platforms/
-hooks/
+dist/
+mobile/src-tauri/target/
+mobile/src-tauri/gen/schemas/
 .research/
 work/
 .DS_Store

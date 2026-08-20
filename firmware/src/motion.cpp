@@ -216,6 +216,10 @@ String statusJson() {
   return json;
 }
 
+bool isActive() {
+  return state == State::Moving || state == State::Homing;
+}
+
 bool statusDirty() {
   return dirty;
 }

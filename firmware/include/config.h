@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Arduino.h>
+#include <stdint.h>
 
 namespace RailConfig {
 
@@ -38,6 +38,8 @@ constexpr uint8_t STALLGUARD_THRESHOLD = 80;
 constexpr float MAX_SINGLE_MOVE_MM = 50.0f;
 
 constexpr char BLE_DEVICE_NAME[] = "FocusRail";
+// BLE interval units are 0.625 ms; 0x0800 is the ESP-IDF 1.28 s default.
+constexpr uint16_t BLE_ADVERTISING_INTERVAL_UNITS = 0x0800;
 constexpr char BLE_SERVICE_UUID[] = "7d2a0001-9b7e-4f31-a6d8-2c5f4e8b1000";
 constexpr char BLE_COMMAND_UUID[] = "7d2a0002-9b7e-4f31-a6d8-2c5f4e8b1000";
 constexpr char BLE_STATUS_UUID[] = "7d2a0003-9b7e-4f31-a6d8-2c5f4e8b1000";

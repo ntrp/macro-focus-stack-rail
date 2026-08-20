@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#123c50" />
+    <title>Focus Rail</title>
+  </head>
+  <body>
+    <header>
+      <p class="eyebrow">Camera motion control</p>
+      <h1>Focus Rail</h1>
+    </header>
+
+    <main>
+      <section class="card connection-card" aria-live="polite">
+        <div>
+          <h2 id="connection-label">Not connected</h2>
+          <p id="detail-label" class="muted">Tap Connect to find FocusRail</p>
+        </div>
+        <button id="connect-button" class="secondary">Connect</button>
+      </section>
+
+      <section class="card" aria-live="polite">
+        <p class="eyebrow">Position</p>
+        <p id="position-label" class="position">— mm</p>
+        <div class="status-row">
+          <span id="state-label" class="pill">State: unknown</span>
+          <span id="homed-label" class="pill">Not homed</span>
+        </div>
+        <p id="error-label" class="error" role="alert" hidden></p>
+      </section>
+
+      <button id="home-button" class="primary full" disabled>Home rail</button>
+
+      <section class="card">
+        <h2>Move relative</h2>
+        <label for="move-distance">Distance in millimetres</label>
+        <input id="move-distance" inputmode="decimal" type="text" value="1.0" />
+        <div class="button-row">
+          <button id="move-negative" class="secondary" disabled>Move −</button>
+          <button id="move-positive" class="secondary" disabled>Move +</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Fine jog</h2>
+        <label for="jog-distance">Jog distance in millimetres</label>
+        <input id="jog-distance" inputmode="decimal" type="text" value="0.1" />
+        <div class="button-row">
+          <button id="jog-negative" class="secondary" disabled>Jog −</button>
+          <button id="jog-positive" class="secondary" disabled>Jog +</button>
+        </div>
+      </section>
+
+      <button id="stop-button" class="danger full" disabled>Stop</button>
+      <p class="footnote">Position is open-loop. Home again after a stall, skipped step, or power loss.</p>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

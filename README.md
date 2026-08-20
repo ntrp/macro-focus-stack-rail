@@ -3,7 +3,7 @@
 This repository contains:
 
 - `firmware/`: PlatformIO firmware for a Seeed Studio XIAO ESP32-C3 and TMC2209.
-- `mobile/`: a NativeScript Core/TypeScript app for Android and iOS.
+- `mobile/`: a Tauri 2 app for Android and iOS.
 
 The firmware drives the rail through STEP/DIR, configures and checks the TMC2209 over UART, homes against a mechanical end using StallGuard/DIAG, and exposes a small text protocol over BLE. The app discovers the rail, connects, subscribes to status updates, and provides home, relative move, jog, and stop controls.
 
@@ -67,25 +67,17 @@ The motor is deliberately left energized while idle so the reported open-loop po
 
 ## Mobile app build
 
-Prerequisites are Node.js and the normal Android Studio/Xcode setup for the target platform. Install the NativeScript CLI globally with npm, then verify the installation:
-
-```sh
-npm install -g nativescript
-ns --version
-```
-
-Install and run the app:
+Install the [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/) for Rust and the target mobile platform, then:
 
 ```sh
 cd mobile
 npm install
-ns doctor
-ns run android
+npm run android
 ```
 
-On macOS, use `ns run ios` for iOS. BLE requires a physical phone; the standard Android emulator and iOS Simulator are not suitable for testing this rail.
+On macOS, use `npm run ios` for iOS. Set `NDK_HOME` if the Android SDK does not select its installed side-by-side NDK automatically. iOS device builds also require an Apple development certificate/team.
 
-The first connection may trigger Bluetooth/location permission prompts. Android 12+ uses the nearby-devices permissions; older Android versions can require location permission for BLE discovery. iOS displays the usage text in `Info.plist`.
+BLE requires a physical phone; emulators and simulators are useful for UI checks only. The first connection requests the platform Bluetooth permissions. The Tauri configuration includes Android BLE permissions and the iOS Bluetooth usage description.
 
 ## BLE protocol
 
