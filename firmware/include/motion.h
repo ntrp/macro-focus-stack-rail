@@ -6,10 +6,10 @@ namespace Motion {
 
 void setup();
 void update();
-void startMove(float distanceMm);
+void startMove(float coordinateMm, float speedMmS, bool absolute);
 void startHoming();
 void requestStop();
-void zeroPosition();
+void setPosition(float positionMm);
 void reject(const char* error);
 
 String statusJson();

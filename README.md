@@ -5,11 +5,13 @@ This repository contains:
 - `firmware/`: PlatformIO firmware for a Seeed Studio XIAO ESP32-C3 and TMC2209.
 - `mobile/`: a Tauri 2 app for Android and iOS.
 
-The firmware drives the rail through STEP/DIR, configures and checks the TMC2209 over UART, homes against a mechanical end using StallGuard/DIAG, and exposes a small text protocol over BLE. The app discovers the rail, connects, subscribes to status updates, and provides home, relative move, jog, and stop controls.
+The firmware drives the rail through STEP/DIR, configures and checks the TMC2209 over UART, homes against a mechanical end using StallGuard/DIAG, and exposes a small G-code protocol over BLE. The app discovers the rail, connects, subscribes to status updates, and provides home, preset incremental moves, absolute positioning, and stop controls.
 
 > Sensorless homing must be tuned on the assembled rail. Start with the carriage near the stop, keep a hand on power, and be ready to disconnect the motor supply. Never test the first homing run with a camera mounted.
 
 ## Wiring and pin assignments
+
+![Focus Rail circuit diagram](docs/circuit-diagram.svg)
 
 The pin names below are the XIAO board's silkscreen names; the GPIO numbers are what the firmware uses.
 
@@ -36,10 +38,10 @@ The defaults are in `firmware/include/config.h`:
 
 - 1.0 mm lead screw
 - 1.8 degree motor (200 full steps/revolution)
-- 1/16 microstepping
-- 3,200 microsteps/mm
-- 400 mA RMS motor current (about 566 mA sine-wave peak)
-- 2 mm/s normal speed; 2 mm/s^2 acceleration
+- 1/4 microstepping
+- 800 microsteps/mm
+- 500 mA RMS motor current (about 707 mA sine-wave peak)
+- 5 mm/s maximum commanded speed; 2 mm/s default feed; 2 mm/s^2 acceleration
 - 1 mm/s homing speed
 - 100 mm maximum homing search
 - 1 mm backoff from the physical stop
@@ -63,7 +65,7 @@ The defaults are in `firmware/include/config.h`:
 
 The serial monitor runs at 115200 baud. At boot, `TMC UART OK` should appear. If it reports a UART error, do not attempt homing: check the common ground, one-wire UART resistor/wiring, driver address straps, and `R_SENSE`.
 
-The motor is deliberately left energized while idle so the reported open-loop position is not immediately lost. `STOP` decelerates using the configured acceleration; it is not a safety-rated emergency stop. Remove motor power for an actual emergency.
+The motor is deliberately left energized while idle so the reported open-loop position is not immediately lost. `M0` decelerates using the configured acceleration; it is not a safety-rated emergency stop. Remove motor power for an actual emergency.
 
 ## Mobile app build
 
@@ -89,16 +91,18 @@ Device name: `FocusRail`
 | Command characteristic (write)      | `7d2a0002-9b7e-4f31-a6d8-2c5f4e8b1000` |
 | Status characteristic (read/notify) | `7d2a0003-9b7e-4f31-a6d8-2c5f4e8b1000` |
 
-Commands are UTF-8 text terminated by a newline:
+Commands are UTF-8 text terminated by a newline. Feed rate `F` is in millimetres per minute:
 
-| Command      | Meaning                                                           |
-| ------------ | ----------------------------------------------------------------- |
-| `HOME`       | Seek the configured end stop, then back off and set position to 0 |
-| `MOVE 1.250` | Move 1.250 mm relative to the current position                    |
-| `JOG -0.100` | Same relative movement command, intended for manual jogging       |
-| `STOP`       | Decelerate to a stop                                              |
-| `ZERO`       | Set the current position to 0 while idle                          |
-| `STATUS?`    | Request an immediate status notification                          |
+| Command          | Meaning                                                           |
+| ---------------- | ----------------------------------------------------------------- |
+| `G90`            | Select absolute positioning                                       |
+| `G91`            | Select relative positioning                                       |
+| `G0 X10 F60`     | Move to/by 10 mm at 60 mm/min, using the selected mode            |
+| `G1 X-0.1 F30`   | Same motion handling as `G0`                                      |
+| `G92 X0`         | Set the current coordinate to 0 and mark the rail homed           |
+| `G28`            | Seek the configured end stop, back off, and set position to 0     |
+| `M0`             | Decelerate to a stop                                              |
+| `M114`           | Request an immediate status notification                          |
 
 Status is newline-terminated JSON. Example:
 
@@ -114,7 +118,7 @@ The app requests a 185-byte MTU and also buffers notification fragments before p
 
 1. Power only the XIAO and confirm the firmware advertises as `FocusRail`.
 2. Power the driver with the motor disconnected only while power is off; then power up and confirm `TMC UART OK`.
-3. Use very small 0.05–0.10 mm jogs to confirm direction and smooth movement.
+3. Use the ±0.01 mm or ±0.1 mm buttons to confirm direction and smooth movement.
 4. Put the carriage 2–3 mm from the homing stop, remove the camera, and tap Home.
 5. If it stops before touching, reduce `STALLGUARD_THRESHOLD`. If it pushes hard or reaches the search limit, increase the threshold in small steps and verify DIAG wiring.
 6. Repeat from progressively farther away. Sensorless homing behavior changes with speed, current, lubrication, screw preload, and temperature, so test the full mechanical range.

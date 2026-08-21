@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <meta name="theme-color" content="#123c50" />
     <title>Focus Rail</title>
   </head>
@@ -31,30 +34,62 @@
         <p id="error-label" class="error" role="alert" hidden></p>
       </section>
 
-      <button id="home-button" class="primary full" disabled>Home rail</button>
+      <div class="button-row action-row">
+        <button id="home-button" class="primary" disabled>Home rail</button>
+        <button id="zero-button" class="secondary" disabled>Set zero</button>
+      </div>
 
       <section class="card">
-        <h2>Move relative</h2>
-        <label for="move-distance">Distance in millimetres</label>
-        <input id="move-distance" inputmode="decimal" type="text" value="1.0" />
-        <div class="button-row">
-          <button id="move-negative" class="secondary" disabled>Move −</button>
-          <button id="move-positive" class="secondary" disabled>Move +</button>
+        <h2>Incremental move</h2>
+        <label for="move-speed">Feed rate in millimetres per minute</label>
+        <input id="move-speed" inputmode="decimal" type="text" value="120" />
+        <div class="step-grid" aria-label="Incremental movement">
+          <button class="secondary step-button" data-step="-10" disabled>
+            −10 mm
+          </button>
+          <button class="secondary step-button" data-step="10" disabled>
+            +10 mm
+          </button>
+          <button class="secondary step-button" data-step="-1" disabled>
+            −1 mm
+          </button>
+          <button class="secondary step-button" data-step="1" disabled>
+            +1 mm
+          </button>
+          <button class="secondary step-button" data-step="-0.1" disabled>
+            −0.1 mm
+          </button>
+          <button class="secondary step-button" data-step="0.1" disabled>
+            +0.1 mm
+          </button>
+          <button class="secondary step-button" data-step="-0.01" disabled>
+            −0.01 mm
+          </button>
+          <button class="secondary step-button" data-step="0.01" disabled>
+            +0.01 mm
+          </button>
         </div>
       </section>
 
       <section class="card">
-        <h2>Fine jog</h2>
-        <label for="jog-distance">Jog distance in millimetres</label>
-        <input id="jog-distance" inputmode="decimal" type="text" value="0.1" />
-        <div class="button-row">
-          <button id="jog-negative" class="secondary" disabled>Jog −</button>
-          <button id="jog-positive" class="secondary" disabled>Jog +</button>
-        </div>
+        <h2>Absolute move</h2>
+        <label for="absolute-position">Target position in millimetres</label>
+        <input
+          id="absolute-position"
+          inputmode="decimal"
+          type="text"
+          value="0"
+        />
+        <button id="absolute-move" class="primary full" disabled>
+          Move to position
+        </button>
       </section>
 
       <button id="stop-button" class="danger full" disabled>Stop</button>
-      <p class="footnote">Position is open-loop. Home again after a stall, skipped step, or power loss.</p>
+      <p class="footnote">
+        Position is open-loop. Home again after a stall, skipped step, or power
+        loss.
+      </p>
     </main>
 
     <script type="module" src="/src/main.js"></script>

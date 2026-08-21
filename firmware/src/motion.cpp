@@ -26,6 +26,9 @@ bool homed = false;
 String errorMessage;
 long homeStartPosition = 0;
 uint32_t homeStartMillis = 0;
+uint32_t lastStallSampleMillis = 0;
+uint32_t lastStallLogMillis = 0;
+uint8_t lowStallSamples = 0;
 bool dirty = true;
 
 long mmToSteps(float mm) {
@@ -60,6 +63,12 @@ void setError(const String& message) {
   Serial.printf("Error: %s\n", message.c_str());
 }
 
+void setCommandError(const String& message) {
+  errorMessage = message;
+  dirty = true;
+  Serial.printf("Command error: %s\n", message.c_str());
+}
+
 }  // namespace
 
 void setup() {
@@ -76,7 +85,9 @@ void setup() {
   driver.blank_time(24);
   driver.rms_current(MOTOR_CURRENT_MA_RMS, 0.5f);
   driver.microsteps(MICROSTEPS);
-  driver.en_spreadCycle(true);  // StallGuard requires spreadCycle.
+  driver.en_spreadCycle(false);  // TMC2209 StallGuard4 requires StealthChop.
+  driver.pwm_autoscale(true);
+  driver.TPWMTHRS(0);
   driver.TCOOLTHRS(0xFFFFF);
   driver.SGTHRS(STALLGUARD_THRESHOLD);
 
@@ -95,30 +106,49 @@ void setup() {
   }
 }
 
-void startMove(float distanceMm) {
-  if (!std::isfinite(distanceMm) || fabsf(distanceMm) < 0.0001f) {
+void startMove(float coordinateMm, float speedMmS, bool absolute) {
+  if (state == State::Moving || state == State::Homing) {
+    setCommandError("busy");
+    return;
+  }
+  if (!std::isfinite(coordinateMm)) {
     setError("invalid_distance");
     return;
   }
-  if (fabsf(distanceMm) > MAX_SINGLE_MOVE_MM) {
-    setError("move_too_large");
+  if (!std::isfinite(speedMmS) || speedMmS <= 0.0f ||
+      speedMmS > TRAVEL_SPEED_MM_S || mmToSteps(speedMmS) == 0) {
+    setError("invalid_speed");
     return;
   }
-  if (state == State::Moving || state == State::Homing) {
-    setError("busy");
+  if (absolute && !homed) {
+    setError("not_homed");
+    return;
+  }
+
+  const long target = absolute
+                          ? mmToSteps(coordinateMm)
+                          : stepper.currentPosition() + mmToSteps(coordinateMm);
+  const long delta = target - stepper.currentPosition();
+  if (delta == 0) {
+    setError("invalid_distance");
+    return;
+  }
+  if (fabsf(stepsToMm(delta)) > MAX_SINGLE_MOVE_MM) {
+    setError("move_too_large");
     return;
   }
 
   errorMessage = "";
-  restoreTravelProfile();
-  stepper.move(mmToSteps(distanceMm));
+  stepper.setMaxSpeed(mmToSteps(speedMmS));
+  stepper.setAcceleration(mmToSteps(ACCELERATION_MM_S2));
+  stepper.moveTo(target);
   state = State::Moving;
   dirty = true;
 }
 
 void startHoming() {
   if (state == State::Moving || state == State::Homing) {
-    setError("busy");
+    setCommandError("busy");
     return;
   }
 
@@ -128,6 +158,9 @@ void startHoming() {
   homePhase = HomePhase::Seeking;
   homeStartPosition = stepper.currentPosition();
   homeStartMillis = millis();
+  lastStallSampleMillis = homeStartMillis;
+  lastStallLogMillis = homeStartMillis;
+  lowStallSamples = 0;
 
   stepper.setMaxSpeed(mmToSteps(HOME_SPEED_MM_S));
   stepper.setAcceleration(mmToSteps(ACCELERATION_MM_S2));
@@ -147,20 +180,26 @@ void requestStop() {
   }
 }
 
-void zeroPosition() {
-  if (state == State::Idle || state == State::Error) {
-    stepper.setCurrentPosition(0);
-    homed = false;
+void setPosition(float positionMm) {
+  if (!std::isfinite(positionMm)) {
+    setError("invalid_position");
+  } else if (state == State::Idle || state == State::Error) {
+    stepper.setCurrentPosition(mmToSteps(positionMm));
+    homed = true;
     state = State::Idle;
     errorMessage = "";
     dirty = true;
   } else {
-    setError("busy");
+    setCommandError("busy");
   }
 }
 
 void reject(const char* error) {
-  setError(error);
+  if (state == State::Moving || state == State::Homing) {
+    setCommandError(error);
+  } else {
+    setError(error);
+  }
 }
 
 void update() {
@@ -176,12 +215,33 @@ void update() {
   if (state != State::Homing) return;
 
   if (homePhase == HomePhase::Seeking) {
+    const uint32_t now = millis();
     const long distance = labs(stepper.currentPosition() - homeStartPosition);
     const bool ignoreWindowPassed =
         distance >= mmToSteps(HOME_STALL_IGNORE_MM) &&
-        millis() - homeStartMillis >= HOME_STALL_IGNORE_MS;
+        now - homeStartMillis >= HOME_STALL_IGNORE_MS;
+    const bool diagHigh = digitalRead(DIAG_PIN) == HIGH;
+    bool uartStall = false;
 
-    if (ignoreWindowPassed && digitalRead(DIAG_PIN) == HIGH) {
+    if (ignoreWindowPassed &&
+        now - lastStallSampleMillis >= STALLGUARD_SAMPLE_INTERVAL_MS) {
+      lastStallSampleMillis = now;
+      const uint16_t sgResult = driver.SG_RESULT();
+      if (sgResult <= STALLGUARD_UART_THRESHOLD) {
+        if (lowStallSamples < STALLGUARD_UART_SAMPLES) ++lowStallSamples;
+      } else {
+        lowStallSamples = 0;
+      }
+      uartStall = lowStallSamples >= STALLGUARD_UART_SAMPLES;
+
+      if (now - lastStallLogMillis >= 100) {
+        lastStallLogMillis = now;
+        Serial.printf("StallGuard: SG_RESULT=%u DIAG=%u COUNT=%u\n", sgResult,
+                      diagHigh, lowStallSamples);
+      }
+    }
+
+    if (ignoreWindowPassed && (diagHigh || uartStall)) {
       stepper.setCurrentPosition(stepper.currentPosition());
       stepper.setMaxSpeed(mmToSteps(HOME_SPEED_MM_S));
       stepper.move(HOME_DIRECTION * -mmToSteps(HOME_BACKOFF_MM));

@@ -47,14 +47,16 @@ class CommandCallbacks final : public BLECharacteristicCallbacks {
     const size_t count = min(value.size(), sizeof(message.text) - 1);
     memcpy(message.text, value.data(), count);
     message.text[count] = '\0';
-    xQueueSend(commandQueue, &message, 0);
+    if (xQueueSend(commandQueue, &message, pdMS_TO_TICKS(20)) != pdTRUE) {
+      Serial.println("BLE command queue full");
+    }
   }
 };
 
 }  // namespace
 
 void setup() {
-  commandQueue = xQueueCreate(6, sizeof(CommandMessage));
+  commandQueue = xQueueCreate(12, sizeof(CommandMessage));
 
   BLEDevice::init(BLE_DEVICE_NAME);
   BLEDevice::setMTU(185);
